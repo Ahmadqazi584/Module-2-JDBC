@@ -10,10 +10,10 @@ package model;
  */
 public class Student {
     private int id;
-    private String studentname;
-    private String studentemail;
-    private String studentphone;
-    private Department depart;
+    private String name;
+    private String email;
+    private String phone;
+    private Department department;
 
     public int getId() {
         return id;
@@ -23,36 +23,36 @@ public class Student {
         this.id = id;
     }
 
-    public String getStudentname() {
+    public String getName() {
         return studentname;
     }
 
-    public void setStudentname(String studentname) {
-        this.studentname = studentname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getStudentemail() {
+    public String getEmail() {
         return studentemail;
     }
 
-    public void setStudentemail(String studentemail) {
-        this.studentemail = studentemail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getStudentphone() {
+    public String getPhone() {
         return studentphone;
     }
 
-    public void setStudentphone(String studentphone) {
-        this.studentphone = studentphone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public Department getDepart() {
-        return depart;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepart(Department depart) {
-        this.depart = depart;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
     
 }
