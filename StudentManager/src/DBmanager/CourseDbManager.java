@@ -25,15 +25,15 @@ public class CourseDbManager {
     private final String INSERT_COURSE_VALUES = "INSERT INTO `dbs11786303`.`course` (`crse_name`, `crse_code`) VALUES (?, ?)";
     private final String UPDATE_COURSE_VALUES = "UPDATE `course` SET `crse_name`=?, `crse_code`=? WHERE `course_id`=?";
     private final String SHOW_COURSES = "SELECT * FROM `course`";
-    private final String DELETE_MARKS_CRSE = "DELETE FROM marks WHERE course_id = ?";
+    private final String DELETE_MARKS_COURSE = "DELETE FROM marks WHERE course_id = ?";
     private final String DELETE_COURSE = "DELETE FROM course WHERE course_id = ?";
     
     public void addCourse(Course course){
         try {
             try (Connection connect = dbconnection.getconnection()) {
                 PreparedStatement ps = connect.prepareStatement(INSERT_COURSE_VALUES);
-                ps.setString(1, course.getCoursename());
-                ps.setString(2, course.getCoursecode());
+                ps.setString(1, course.getName());
+                ps.setString(2, course.getCode());
                 ps.execute();
                 connect.close();
             }
@@ -46,8 +46,8 @@ public class CourseDbManager {
         try {
             Connection connect = dbconnection.getconnection();
             PreparedStatement ps = connect.prepareStatement(UPDATE_COURSE_VALUES);
-            ps.setString(1, course.getCoursename());
-            ps.setString(2, course.getCoursecode());
+            ps.setString(1, course.getName());
+            ps.setString(2, course.getCode());
             ps.setInt(3, course.getId());
             ps.execute();
             connect.close();
@@ -65,8 +65,8 @@ public class CourseDbManager {
             while(rstcourse.next()){
                 Course c = new Course();
                 c.setId(rstcourse.getInt("course_id"));
-                c.setCoursename(rstcourse.getString("crse_name"));
-                c.setCoursecode(rstcourse.getString("crse_code"));
+                c.setName(rstcourse.getString("crse_name"));
+                c.setCode(rstcourse.getString("crse_code"));
                 
                 if(c.getId() == id){
                     return c;
@@ -90,8 +90,8 @@ public class CourseDbManager {
             while(rstcourse.next()){
                 Course c = new Course();
                 c.setId(rstcourse.getInt("course_id"));
-                c.setCoursename(rstcourse.getString("crse_name"));
-                c.setCoursecode(rstcourse.getString("crse_code"));
+                c.setName(rstcourse.getString("crse_name"));
+                c.setCode(rstcourse.getString("crse_code"));
                 
                 courses.add(c);
             }
@@ -104,15 +104,15 @@ public class CourseDbManager {
         return null;
     }
     
-    public void deleteCourse(int crseid){
+    public void deleteCourse(int courseid){
         try {
             Connection connect = dbconnection.getconnection();
             PreparedStatement ps1 = connect.prepareStatement(DELETE_MARKS_CRSE);
-            ps1.setInt(1, crseid);
+            ps1.setInt(1, courseid);
             ps1.execute();
             
             PreparedStatement ps2 = connect.prepareStatement(DELETE_COURSE);
-            ps2.setInt(1, crseid);
+            ps2.setInt(1, courseid);
             ps2.execute();
             
             connect.close();
