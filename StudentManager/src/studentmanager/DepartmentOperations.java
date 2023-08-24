@@ -17,42 +17,42 @@ public class DepartmentOperations {
     Scanner input = new Scanner(System.in);
     DepartDbManager departdbobj = new DepartDbManager();
 
-    public void addDepartOperation(){
+    public void addDepartmentOperation(){
         
         System.out.print("Enter Department Name : " );
-        String departname = input.next();
+        String departmentname = input.next();
         System.out.print("Enter Department Code : " );
-        String departcode = input.next();
+        String departmentcode = input.next();
         
         Department department = new Department();
-        department.setDepartname(departname);
-        department.setDepartcode(departcode);
+        department.setName(departmentname);
+        department.setCode(departmentcode);
         
         departdbobj.addDepartment(department);
     }
-   public void showDepartOperation() {
+   public void showDepartmentOperation() {
         List<Department> depart = departdbobj.getAllDepartment(); // Call the method on the database manager
         for (Department department : depart) {
             System.out.println("Department Id: " + department.getId());
-            System.out.println("Department Name: " + department.getDepartname());
-            System.out.println("Department Code: " + department.getDepartcode());
+            System.out.println("Department Name: " + department.getName());
+            System.out.println("Department Code: " + department.getCode());
             System.out.println("=============================");
         }
     }
-   public void updateDepartOperation(){        
+   public void updateDepartmentOperation(){        
         
         Department d = departdbobj.getDepartmentById(1);
         
         System.out.print("Enter your new Department code");
-        String departcode = input.next();
-        d.setDepartcode(departcode);
+        String departmentcode = input.next();
+        d.setCode(departmentcode);
         
         departdbobj.updateDeparment(d);
         System.out.print("Record Updated Successfully!");
 
    }
    
-   public void deleteDepartOperation(){
+   public void deleteDepartmentOperation(){
         departdbobj.deleteDepartment(7);
         System.out.print("Record Deleted Successfully!");
    }  
