@@ -35,9 +35,9 @@ public class StudentOperations {
             System.out.print("Enter the Student Phone: ");
             String studentphone = input.nextLine();
             System.out.print("Enter the Student Department Name: ");
-            String studentdeptname = input.nextLine();
+            String studentdeptmentname = input.nextLine();
 
-            ps.setString(1, studentdeptname);
+            ps.setString(1, studentdeptmentname);
             ResultSet deptResult = ps.executeQuery();
             
             int getdeptid = 0; // Initialize getdeptid
@@ -51,12 +51,12 @@ public class StudentOperations {
             if (departmentExists) {
                 // Department exists, proceed to add the student
                 Student s = new Student();
-                s.setStudentname(studentname);
-                s.setStudentemail(studentemail);
-                s.setStudentphone(studentphone);
+                s.setName(studentname);
+                s.setEmail(studentemail);
+                s.setPhone(studentphone);
                 Department d = new Department();
                 d.setId(getdeptid); // Use the retrieved department ID
-                s.setDepart(d);
+                s.setDepartment(d);
 
                 studentdbobj.addStudent(s);
                 System.out.print("Record Added Successfully!");
@@ -73,11 +73,11 @@ public class StudentOperations {
     public void showAllStudentsOperation(){
         List<Student> list = studentdbobj.getAllStudent();
         for(Student student : list){
-            System.out.println("Student Name : " + student.getStudentname());
-            System.out.println("Student Email : " + student.getStudentemail());
-            System.out.println("Student Phone : " + student.getStudentphone());
-            System.out.println("Student Department Name : " + student.getDepart().getDepartname());
-            System.out.println("Student Department Code : " + student.getDepart().getDepartcode());
+            System.out.println("Student Name : " + student.getName());
+            System.out.println("Student Email : " + student.getEmail());
+            System.out.println("Student Phone : " + student.getPhone());
+            System.out.println("Student Department Name : " + student.getDepartment().getName());
+            System.out.println("Student Department Code : " + student.getDepartment().getCode());
             System.out.println("=============================");
         }
     }
@@ -109,12 +109,12 @@ public class StudentOperations {
             }
             
             if(departmentExists){
-                stu.setStudentname(updatename);
-                stu.setStudentemail(updateemail);
-                stu.setStudentphone(updatephone);
+                stu.setName(updatename);
+                stu.setEmail(updateemail);
+                stu.setPhone(updatephone);
                 Department d = new Department();
                 d.setId(getdeptid);
-                stu.setDepart(d);
+                stu.setDepartment(d);
                 
                 studentdbobj.updateStudent(stu);
                 System.out.print("Record Updated Successfully!");
