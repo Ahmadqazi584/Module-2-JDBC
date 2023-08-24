@@ -19,14 +19,14 @@ public class CourseOperations {
     
     public void addCourseOperation(){
         System.out.print("Enter the Course Name : ");
-        String crsename = input.next();
+        String coursename = input.next();
         
         System.out.print("Enter the Course Code : ");
-        String crsecode = input.next();
+        String coursecode = input.next();
         
         Course c = new Course();
-        c.setCoursename(crsename);
-        c.setCoursecode(crsecode);
+        c.setName(coursename);
+        c.setCode(coursecode);
         
         coursedbobj.addCourse(c);
         System.out.println("Course Inserted Successfully!");
@@ -37,11 +37,11 @@ public class CourseOperations {
         
         System.out.print("Enter the course name : ");
         String coursename = input.nextLine();
-        course.setCoursename(coursename);
+        course.setName(coursename);
         
         System.out.print("Enter the course code : ");
         String coursecode = input.nextLine();
-        course.setCoursecode(coursecode);
+        course.setCode(coursecode);
         
         coursedbobj.updateCourse(course);
         System.out.println("course Updated Successfully!");
@@ -51,8 +51,8 @@ public class CourseOperations {
         List<Course> crse = coursedbobj.getAllCourse();
         for(Course course : crse){
             System.out.println("Course Id: " + course.getId());
-            System.out.println("Course Name: " + course.getCoursename());
-            System.out.println("Course Code: " + course.getCoursecode());
+            System.out.println("Course Name: " + course.getName());
+            System.out.println("Course Code: " + course.getCode());
             System.out.println("=============================");
         }
     }
