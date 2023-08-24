@@ -37,10 +37,10 @@ public class StudentDbManager {
         try {
             Connection connect = dbconnection.getconnection();
             PreparedStatement ps = connect.prepareStatement(INSERT_STUDENT_RECORD);
-            ps.setString(1, student.getStudentname());
-            ps.setString(2, student.getStudentemail());
-            ps.setString(3, student.getStudentphone());
-            ps.setInt(4, student.getDepart().getId());
+            ps.setString(1, student.getName());
+            ps.setString(2, student.getEmail());
+            ps.setString(3, student.getPhone());
+            ps.setInt(4, student.getDepartment().getId());
             ps.execute();
 
             connect.close();
@@ -54,10 +54,10 @@ public class StudentDbManager {
         try {
             Connection connect = dbconnection.getconnection();
             PreparedStatement ps = connect.prepareStatement(UPDATE_STUDENT_RECORD);
-            ps.setString(1, student.getStudentname());
-            ps.setString(2, student.getStudentemail());
-            ps.setString(3, student.getStudentphone());
-            ps.setInt(4, student.getDepart().getId());
+            ps.setString(1, student.getName());
+            ps.setString(2, student.getEmail());
+            ps.setString(3, student.getPhone());
+            ps.setInt(4, student.getDepartment().getId());
             ps.setInt(5, student.getId());
             ps.execute();
             connect.close();
@@ -76,14 +76,14 @@ public class StudentDbManager {
             while (rststudent.next()) {
                 Student s = new Student();
                 s.setId(rststudent.getInt("student_id"));
-                s.setStudentname(rststudent.getString("name"));
-                s.setStudentemail(rststudent.getString("email"));
-                s.setStudentphone(rststudent.getString("phone"));
+                s.setName(rststudent.getString("name"));
+                s.setEmail(rststudent.getString("email"));
+                s.setPhone(rststudent.getString("phone"));
 
                 Department d = new Department();
                 d.setId(rststudent.getInt("dept_id"));
 
-                s.setDepart(d);
+                s.setDepartment(d);
 
                 if (s.getId() == id) {
                     return s;
@@ -107,16 +107,16 @@ public class StudentDbManager {
             while (rststudent.next()) {
                 Student s = new Student();
                 s.setId(rststudent.getInt("student_id"));
-                s.setStudentname(rststudent.getString("name"));
-                s.setStudentemail(rststudent.getString("email"));
-                s.setStudentphone(rststudent.getString("phone"));
+                s.setName(rststudent.getString("name"));
+                s.setEmail(rststudent.getString("email"));
+                s.setPhone(rststudent.getString("phone"));
 
                 Department d = new Department();
                 d.setId(rststudent.getInt("dept_id"));
-                d.setDepartname(rststudent.getString("dept_name"));
-                d.setDepartcode(rststudent.getString("dept_code"));
+                d.setName(rststudent.getString("dept_name"));
+                d.setCode(rststudent.getString("dept_code"));
 
-                s.setDepart(d);
+                s.setDepartment(d);
                 student.add(s);
 
                 connect.close();
@@ -145,19 +145,4 @@ public class StudentDbManager {
             Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    public Student getStudentByName(String name) {
-//        try {
-//            Connection connect = dbconnection.getconnection();
-//            PreparedStatement ps1 = connect.prepareStatement(GET_ID_BY_NAME);
-//            ps1.setString(1, name);
-//            ps1.execute();
-//            
-//            connect.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//
-//    }
 }
