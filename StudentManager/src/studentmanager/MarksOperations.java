@@ -21,7 +21,7 @@ public class MarksOperations {
     MarkDbManager markdbobj = new MarkDbManager();
     Scanner input = new Scanner(System.in);
 
-    public void addMarksOperation() {
+    public void addSudentCourseOperation() {
         System.out.print("Enter the Student Id : ");
         int studentid = input.nextInt();
         System.out.print("Enter the Course Id : ");
@@ -35,15 +35,15 @@ public class MarksOperations {
         s.setId(studentid);
         c.setId(courseid);
 
-        m.setStu(s);
-        m.setCrse(c);
+        m.setStudent(s);
+        m.setCourse(c);
         m.setMarks(noofmarks);
 
         markdbobj.addMarks(m);
         System.out.print("Record Added Successfully!");
     }
 
-    public void updateMarksOperation() {
+    public void updateStudentCourseOperation() {
 
         System.out.print("Enter the Student Id : ");
         int studentid = input.nextInt();
@@ -58,15 +58,15 @@ public class MarksOperations {
         s.setId(studentid);
         c.setId(courseid);
 
-        mark.setStu(s);
-        mark.setCrse(c);
+        mark.setStudent(s);
+        mark.setCourse(c);
         mark.setMarks(noofmarks);
 
         markdbobj.updateMarks(mark);
         System.out.print("Record Updated Successfully!");
     }
 
-    public void getSingleStudentMarksOperation() {
+    public void getSingleStudentCourseOperation() {
 
         List<Marks> marks = markdbobj.getStudentData();
 
@@ -76,21 +76,21 @@ public class MarksOperations {
         int count = 0;
 
         for (Marks m : marks) {
-            if ((m.getStu().getStudentname()).equals(studentname)) {
+            if ((m.getStudent().getName()).equals(studentname)) {
                 flag = true;
                 if (flag == true && count == 0) {
-                    System.out.println("Student Name : " + m.getStu().getStudentname());
+                    System.out.println("Student Name : " + m.getStudent().getName());
                     System.out.println("=============================");
                     count++;
                 }
-                System.out.println("Course Name : " + m.getCrse().getCoursename());
+                System.out.println("Course Name : " + m.getCourse().getName());
                 System.out.print("Marks Obtained in course : " + m.getMarks());
                 System.out.println();
             }
         }
     }
 
-    public void getAllStudentDataOperation() {
+    public void getAllStudentCourseOperation() {
 
         List<Marks> marks = markdbobj.getStudentData();
 
@@ -100,13 +100,13 @@ public class MarksOperations {
 
         for (Marks m : marks) {
     
-            getname =  m.getStu().getStudentname();
+            getname =  m.getStudent().getName();
             
-            if ((m.getStu().getStudentname()).equals(getname)) {
+            if ((m.getStudent().getName()).equals(getname)) {
                 
                 System.out.println("Student Name : " + getname );
                 System.out.println("=============================");
-                System.out.println("Course Name : " + m.getCrse().getCoursename());
+                System.out.println("Course Name : " + m.getCrse().getName());
                 System.out.print("Marks Obtained in course : " + m.getMarks());
                 System.out.println();
                 
