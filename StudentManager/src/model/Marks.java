@@ -8,10 +8,10 @@ package model;
  *
  * @author Ahmed
  */
-public class Marks {
+public class StudentCourse {
     private int id;
-    private Student stu;
-    private Course crse;
+    private Student student;
+    private Course course;
     private int marks;
 
     public int getId() {
@@ -22,20 +22,20 @@ public class Marks {
         this.id = id;
     }
 
-    public Student getStu() {
-        return stu;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStu(Student stu) {
-        this.stu = stu;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public Course getCrse() {
-        return crse;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCrse(Course crse) {
-        this.crse = crse;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public int getMarks() {
