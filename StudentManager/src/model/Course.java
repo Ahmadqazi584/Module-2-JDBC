@@ -10,8 +10,8 @@ package model;
  */
 public class Course {
     private int id;
-    private String coursename;
-    private String coursecode;
+    private String name;
+    private String code;
 
     public int getId() {
         return id;
@@ -21,20 +21,20 @@ public class Course {
         this.id = id;
     }
 
-    public String getCoursename() {
-        return coursename;
+    public String getName() {
+        return name;
     }
 
-    public void setCoursename(String coursename) {
-        this.coursename = coursename;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCoursecode() {
-        return coursecode;
+    public String getCode() {
+        return Code;
     }
 
-    public void setCoursecode(String coursecode) {
-        this.coursecode = coursecode;
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }
