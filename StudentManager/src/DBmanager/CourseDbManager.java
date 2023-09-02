@@ -107,7 +107,11 @@ public class CourseDbManager {
     public void deleteCourse(int courseid){
         try {
             Connection connect = dbconnection.getconnection();
+<<<<<<< HEAD
             PreparedStatement ps1 = connect.prepareStatement(DELETE_MARKS_COURSE);
+=======
+            PreparedStatement ps1 = connect.prepareStatement(DELETE_MARKS_CRSE);
+>>>>>>> origin/main
             ps1.setInt(1, courseid);
             ps1.execute();
             

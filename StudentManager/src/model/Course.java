@@ -30,7 +30,11 @@ public class Course {
     }
 
     public String getCode() {
+<<<<<<< HEAD
         return code;
+=======
+        return Code;
+>>>>>>> origin/main
     }
 
     public void setCode(String code) {

@@ -23,8 +23,13 @@ public class Student {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public String getName(){
         return name;
+=======
+    public String getName() {
+        return studentname;
+>>>>>>> origin/main
     }
 
     public void setName(String name) {
@@ -32,7 +37,11 @@ public class Student {
     }
 
     public String getEmail() {
+<<<<<<< HEAD
         return email;
+=======
+        return studentemail;
+>>>>>>> origin/main
     }
 
     public void setEmail(String email) {
@@ -40,7 +49,11 @@ public class Student {
     }
 
     public String getPhone() {
+<<<<<<< HEAD
         return phone;
+=======
+        return studentphone;
+>>>>>>> origin/main
     }
 
     public void setPhone(String phone) {
