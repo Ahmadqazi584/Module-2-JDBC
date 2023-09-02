@@ -48,10 +48,10 @@ public class StudentManager {
             System.out.print("Enter the option");
             moreoption = input.nextInt();
             switch (moreoption) {
-                case 1 -> departmentOperations.addDepartOperation();
-                case 2 -> departmentOperations.updateDepartOperation();
-                case 3 -> departmentOperations.showDepartOperation();
-                case 4 -> departmentOperations.deleteDepartOperation();
+                case 1 -> departmentOperations.addDepartmentOperation();
+                case 2 -> departmentOperations.updateDepartmentOperation();
+                case 3 -> departmentOperations.showDepartmentOperation();
+                case 4 -> departmentOperations.deleteDepartmentOperation();
                 default -> {
                     System.out.println("Invalid Option Selected!");
                 }
@@ -105,10 +105,10 @@ public class StudentManager {
             System.out.print("Enter the option");
             moreoption = input.nextInt();
             switch (moreoption) {
-                case 1 -> marksoperation.addMarksOperation();
-                case 2 -> marksoperation.updateMarksOperation();
-                case 3 -> marksoperation.getSingleStudentMarksOperation();
-                case 4 -> marksoperation.getAllStudentDataOperation();
+                case 1 -> marksoperation.addStudentCourseOperation();
+                case 2 -> marksoperation.updateStudentCourseOperation();
+                case 3 -> marksoperation.getSingleStudentCourseOperation();
+                case 4 -> marksoperation.getAllStudentCourseOperation();
                 default -> {
                     System.out.println("Invalid Option Selected!");
                 }

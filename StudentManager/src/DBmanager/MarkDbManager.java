@@ -13,22 +13,22 @@ import model.Course;
 import model.Marks;
 import model.Student;
 
-public class MarkDbManager {
+public class StudentCourseDbManager {
 
-    private final String INSERT_MARKS_RECORD = "INSERT INTO `dbs11786303`.`marks` (`student_id`, `course_id`, `mark`) VALUES (?, ?, ?);";
-    private final String UPDATE_MARKS = "UPDATE `marks` SET `mark` = ? WHERE `student_id` = ? AND `course_id` = ?";
+    private final String INSERT_STUDENT_COURSE_RECORD = "INSERT INTO `dbs11786303`.`marks` (`student_id`, `course_id`, `mark`) VALUES (?, ?, ?);";
+    private final String UPDATE_STUDENT_COURSE = "UPDATE `marks` SET `mark` = ? WHERE `student_id` = ? AND `course_id` = ?";
     private final String GET_STUDENT_COURSES = """
                                                SELECT s.student_id, s.name AS student_name, c.course_id, c.crse_name, m.mark
                                                FROM student s
                                                INNER JOIN marks m ON m.student_id = s.student_id
                                                INNER JOIN course c ON c.course_id = m.course_id""";
 
-    public void addMarks(Marks marks) {
+    public void addStudentCourse(Marks marks) {
         try {
             Connection connect = dbconnection.getconnection();
-            PreparedStatement ps = connect.prepareStatement(INSERT_MARKS_RECORD);
-            ps.setInt(1, marks.getStu().getId());
-            ps.setInt(2, marks.getCrse().getId());
+            PreparedStatement ps = connect.prepareStatement(INSERT_STUDENT_COURSE_RECORD);
+            ps.setInt(1, marks.getStudent().getId());
+            ps.setInt(2, marks.getCourse().getId());
             ps.setInt(3, marks.getMarks());
             ps.execute();
 
@@ -41,10 +41,10 @@ public class MarkDbManager {
     public void updateMarks(Marks marks) {
         try {
             Connection connect = dbconnection.getconnection();
-            PreparedStatement ps = connect.prepareStatement(UPDATE_MARKS);
+            PreparedStatement ps = connect.prepareStatement(UPDATE_STUDENT_COURSE);
             ps.setInt(1, marks.getMarks());
-            ps.setInt(2, marks.getStu().getId());
-            ps.setInt(3, marks.getCrse().getId());
+            ps.setInt(2, marks.getStudent().getId());
+            ps.setInt(3, marks.getCourse().getId());
             ps.execute();
 
             connect.close();
@@ -64,13 +64,13 @@ public class MarkDbManager {
 
                 Student student = new Student();
                 student.setId(rstgetcourses.getInt("student_id"));
-                student.setStudentname(rstgetcourses.getString("student_name"));
-                mark.setStu(student);
+                student.setName(rstgetcourses.getString("student_name"));
+                mark.setStudent(student);
 
                 Course course = new Course();
                 course.setId(rstgetcourses.getInt("course_id"));
-                course.setCoursename(rstgetcourses.getString("crse_name"));
-                mark.setCrse(course);
+                course.setName(rstgetcourses.getString("crse_name"));
+                mark.setCourse(course);
 
                 mark.setMarks(rstgetcourses.getInt("mark"));
 

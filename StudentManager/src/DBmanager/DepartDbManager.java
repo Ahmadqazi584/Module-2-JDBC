@@ -25,15 +25,15 @@ public class DepartDbManager {
         try {
             connect = dbconnection.getconnection();
             PreparedStatement ps = connect.prepareStatement(INSERT_DEPARTMENT_VALUES);
-            ps.setString(1, department.getDepartname());
-            ps.setString(2, department.getDepartcode());
+            ps.setString(1, department.getName());
+            ps.setString(2, department.getCode());
             ps.execute();
             connect.close();
         } catch (SQLException ex) {
             Logger.getLogger(DepartDbManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println("Department " + department.getDepartname() + " added successfully!");
+        System.out.println("Department " + department.getName() + " added successfully!");
     }
     
     public void updateDeparment(Department department){
@@ -41,16 +41,16 @@ public class DepartDbManager {
             Connection connect = dbconnection.getconnection();
             PreparedStatement ps = connect.prepareStatement(UPDATE_DEPARTMENT_VALUES);
             
-            ps.setString(1, department.getDepartname());
-            ps.setString(2, department.getDepartcode());
+            ps.setString(1, department.getName());
+            ps.setString(2, department.getCode());
             ps.setInt(3, department.getId());
             ps.execute();
             connect.close();
 //            while(rstdepartment.next()){
 //                Department d = new Department();
 //                d.setId(rstdepartment.getInt("dept_id"));
-//                d.setDepartname(rstdepartment.getString("dept_name"));
-//                d.setDepartcode(rstdepartment.getString("dept_code"));
+//                d.setName(rstdepartment.getString("dept_name"));
+//                d.setCode(rstdepartment.getString("dept_code"));
 //                
 //                departments.add(d);
 //            }
@@ -70,8 +70,8 @@ public class DepartDbManager {
             while(rstdepartment.next()){
                 Department d = new Department();
                 d.setId(rstdepartment.getInt("dept_id"));
-                d.setDepartname(rstdepartment.getString("dept_name"));
-                d.setDepartcode(rstdepartment.getString("dept_code"));
+                d.setName(rstdepartment.getString("dept_name"));
+                d.setCode(rstdepartment.getString("dept_code"));
                 
                 departments.add(d);
             }
@@ -91,8 +91,8 @@ public class DepartDbManager {
             while (rstdepartment.next()) {
                 Department d = new Department();
                 d.setId(rstdepartment.getInt("dept_id"));
-                d.setDepartname(rstdepartment.getString("dept_name"));
-                d.setDepartcode(rstdepartment.getString("dept_code"));
+                d.setName(rstdepartment.getString("dept_name"));
+                d.setCode(rstdepartment.getString("dept_code"));
                 
                 if (d.getId() == id) {
                     return d;
@@ -105,20 +105,20 @@ public class DepartDbManager {
         return null;
     }
      
-    public void deleteDepartment(int departid) {
+    public void deleteDepartment(int departmentid) {
     try {
         Connection connect = dbconnection.getconnection();
         
         // First, delete related records in the student table
         String deleteStudentRecords = "DELETE FROM student WHERE dept_id = ?";
         PreparedStatement deleteStudentStmt = connect.prepareStatement(deleteStudentRecords);
-        deleteStudentStmt.setInt(1, departid);
+        deleteStudentStmt.setInt(1, departmentid);
         deleteStudentStmt.execute();
         
         // Then, delete the department
-        PreparedStatement deleteDeptStmt = connect.prepareStatement(DELETE_DEPARTMENT_VALUES);
-        deleteDeptStmt.setInt(1, departid);
-        deleteDeptStmt.execute();
+        PreparedStatement deletestatement = connect.prepareStatement(DELETE_DEPARTMENT_VALUES);
+        deletestatement.setInt(1, departmentid);
+        deletestatement.execute();
         
         connect.close();
     } catch (SQLException ex) {
@@ -139,8 +139,8 @@ public class DepartDbManager {
             while (rst.next()) {
                 Department d = new Department();
                 d.setId(rst.getInt("dept_id"));
-                d.setDepartname(rst.getString("dept_name"));
-                d.setDepartcode(rst.getString("dept_code"));
+                d.setName(rst.getString("dept_name"));
+                d.setCode(rst.getString("dept_code"));
                 
                 return d;
             }

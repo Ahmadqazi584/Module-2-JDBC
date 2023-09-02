@@ -54,5 +54,4 @@ public class Student {
     public void setDepartment(Department department) {
         this.department = department;
     }
-    
 }

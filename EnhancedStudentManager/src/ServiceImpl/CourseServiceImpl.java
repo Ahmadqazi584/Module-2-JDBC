@@ -2,22 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package studentmanager;
+package ServiceImpl;
 
-import DBmanager.CourseDbManager;
+import Service.CourseService;
 import java.util.List;
-import java.util.Scanner;
 import model.Course;
 
 /**
  *
  * @author Ahmed
  */
-public class CourseOperations {
-    Scanner input = new Scanner(System.in);
-    CourseDbManager coursedbobj = new CourseDbManager();
-    
-    public void addCourseOperation(){
+public class CourseServiceImpl implements CourseService{
+
+    @Override
+    public void addCourseService() {
         System.out.print("Enter the Course Name : ");
         String coursename = input.next();
         
@@ -28,12 +26,13 @@ public class CourseOperations {
         c.setName(coursename);
         c.setCode(coursecode);
         
-        coursedbobj.addCourse(c);
+        courseobj.addCourse(c);
         System.out.println("Course Inserted Successfully!");
     }
-    
-    public void updateCourseOperation(){
-        Course course = coursedbobj.getCourseById(1);
+
+    @Override
+    public void updateCourseService() {
+        Course course = courseobj.getCourseById(1);
         
         System.out.print("Enter the course name : ");
         String coursename = input.nextLine();
@@ -43,12 +42,13 @@ public class CourseOperations {
         String coursecode = input.nextLine();
         course.setCode(coursecode);
         
-        coursedbobj.updateCourse(course);
+        courseobj.updateCourse(course);
         System.out.println("course Updated Successfully!");
     }
-    
-    public void showCourseOperation(){
-        List<Course> crse = coursedbobj.getAllCourse();
+
+    @Override
+    public void showCourseService() {
+        List<Course> crse = courseobj.getAllCourse();
         for(Course course : crse){
             System.out.println("Course Id: " + course.getId());
             System.out.println("Course Name: " + course.getName());
@@ -56,9 +56,10 @@ public class CourseOperations {
             System.out.println("=============================");
         }
     }
-    
-    public void deleteCourseOperation(){
-        coursedbobj.deleteCourse(7);
+
+    @Override
+    public void deleteCourseService() {
+        courseobj.deleteCourse(7);
         System.out.print("Record Deleted Successfully!");
     }
 }

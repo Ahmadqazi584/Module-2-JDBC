@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DBmanager;
+package daoimpl;
 
 import DBconnection.dbconnection;
+import dao.StudentDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,18 +22,10 @@ import model.Student;
  *
  * @author Ahmed
  */
-public class StudentDbManager {
+public class StudentDaoImpl implements StudentDao {
 
-    private final String INSERT_STUDENT_RECORD = "INSERT INTO `dbs11786303`.`student` (`name`, `email`, `phone`, `dept_id`) VALUES (?, ?, ?, ?)";
-    private final String UPDATE_STUDENT_RECORD = "UPDATE `student` SET `name` = ? , `email` = ? , `phone` = ? , `dept_id` = ? WHERE `student_id` = ?";
-    private final String SHOW_STUDENT_RECORD = "SELECT * FROM `student`";
-    private final String SHOWMORE_STUDENT_RECORD = """
-                                                   SELECT s.`student_id`, s.`name`, s.`email`, s.`phone`, d.dept_id, d.dept_name, d.dept_code From student s 
-                                                   inner join department d on s.dept_id = d.dept_id""";
-    private final String DELETE_MARKS = "DELETE FROM marks WHERE student_id = ?";
-    private final String DELETE_STUDENT_RECORD = "DELETE FROM student WHERE student_id = ?";
-//    private final String GET_ID_BY_NAME = "SELECT name FROM student WHERE student_id = ?";
-
+    
+    @Override
     public void addStudent(Student student) {
         try {
             Connection connect = dbconnection.getconnection();
@@ -46,10 +39,11 @@ public class StudentDbManager {
             connect.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    @Override
     public void updateStudent(Student student) {
         try {
             Connection connect = dbconnection.getconnection();
@@ -63,10 +57,11 @@ public class StudentDbManager {
             connect.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    @Override
     public Student getStudentById(int id) {
         try {
             Connection connect = dbconnection.getconnection();
@@ -91,11 +86,12 @@ public class StudentDbManager {
                 connect.close();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
+    @Override
     public List<Student> getAllStudent() {
         List<Student> student = new ArrayList<>();
         try {
@@ -118,16 +114,17 @@ public class StudentDbManager {
 
                 s.setDepartment(d);
                 student.add(s);
-
-                connect.close();
             }
+            
+                connect.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return student;
     }
 
+    @Override
     public void deleteStudent(int id) {
         try {
             Connection connect = dbconnection.getconnection();
@@ -142,7 +139,7 @@ public class StudentDbManager {
 
             connect.close();
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDbManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

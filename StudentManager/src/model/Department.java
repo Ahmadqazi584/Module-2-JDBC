@@ -10,8 +10,8 @@ package model;
  */
 public class Department {
     private int id;
-    private String departname;
-    private String departcode;
+    private String name;
+    private String code;
 
     public int getId() {
         return id;
@@ -21,20 +21,20 @@ public class Department {
         this.id = id;
     }
 
-    public String getDepartname() {
-        return departname;
+    public String getName() {
+        return Name;
     }
 
-    public void setDepartname(String departname) {
-        this.departname = departname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDepartcode() {
-        return departcode;
+    public String getCode() {
+        return code;
     }
 
-    public void setDepartcode(String departcode) {
-        this.departcode = departcode;
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }

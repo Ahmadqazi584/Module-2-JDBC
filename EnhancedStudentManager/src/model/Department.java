@@ -8,7 +8,7 @@ package model;
  *
  * @author Ahmed
  */
-public class Course {
+public class Department {
     private int id;
     private String name;
     private String code;
